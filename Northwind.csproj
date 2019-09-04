@@ -30,5 +30,6 @@
     <None Include="wwwroot\img\silver.png" />
     <None Include="wwwroot\img\white.png" />
     <None Include="wwwroot\img\yellow.png" />
+    <None Include="wwwroot\media\toast.wav" />
   </ItemGroup>
 </Project>
