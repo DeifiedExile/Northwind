@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <!-- client -->
     <link rel="stylesheet" href="/css/client.css" />
+    <link rel="stylesheet" href="~/css/jQueryUI.css"/>
 </head>
 <body>
     <!-- navbar -->
@@ -38,7 +39,8 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navCustomerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-users"></i> Customers</a>
+                        <i class="fas fa-users"></i> Customers
+                    </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" asp-action="Account"><i class="fas fa-user"></i> Account</a>
                         <a class="dropdown-item" asp-action="Register"><i class="fas fa-user-edit"></i> Register</a>
@@ -47,7 +49,7 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 sr-only-focusable" type="search" placeholder="Product Search" aria-label="Search" >
+                <input class="form-control mr-sm-2 sr-only-focusable" type="search" placeholder="Product Search" aria-label="Search">
                 <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
@@ -61,7 +63,10 @@
             crossorigin="anonymous"></script>
     <!-- popper & bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+            integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+            crossorigin="anonymous"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
