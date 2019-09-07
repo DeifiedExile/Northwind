@@ -1,4 +1,4 @@
-﻿<div class="jumbotron  shadow my-2 rounded">
+﻿<div class="jumbotron shadow mt-2 rounded">
     <h1 class="display-4"><i class="fas fa-wind"></i>Northwind</h1>
     <p class="lead">We have the best prices and selection of high quality foods &amp; beverages on the planet! Check out our featured discounts below.</p>
     <hr class="my-4">
@@ -8,41 +8,63 @@
 
 @section Scripts {
     <script type="text/javascript" src="/js/client.js"></script>
-
+    
 
 }
-<div class="jumbotron-fluid border border-primary p-3 my-2 shadow rounded text-center">
+@*<div class="jumbotron-fluid border border-primary p-3 my-2 shadow rounded text-center">
     <h2>Test Jumbotron</h2>
     <p>Northwind's very own test jumbotron!</p>
-</div>
-<div class="container">
+</div>*@
+<div class="container-fluid">
 
     <div class="row">
-        <div class="container col-md-4 col-sm-6  p-2 shadow border rounded text-center">
-            <h3>Create a Bootstrap Page</h3>
-            <p>
-                This page will teach you how to create somethign in Bootstrap
-            </p>
-            <button type="button" class="btn btn-info info" id="clickMe">Learn More</button>
-        </div>
-        <div class="container col-md-4 col-sm-6  p-2 shadow border rounded text-center">
-            <h3>Modify a Bootstrap Page</h3>
-            <p>
-                This page will teach you how to modify somethign in Bootstrap
-            </p>
-            <button type="button" class="btn btn-info">Learn More</button>
-        </div>
-        <div class="container col-md-4 col-sm-6  p-2 shadow border rounded text-center">
-            <h3>Lorem Ipsum</h3>
-            <p>
-                dolor sit amet, consectetur adipiscing elit, , sed do eiusmod tempor incididunt.
-            </p>
-            <button type="button" class="btn btn-info">Learn More</button>
+        <div class="container col-md-4 col-sm-6  p-3">
+            <div class="container col-12 shadow border rounded text-center">
+                <h3>Daily Discount</h3>
+                <p>
+                    Click here for your daily discount!
+                </p>
+                <button type="button" class="btn btn-info info clickMe" data-sale="1">Click Me!</button>
+                
+            </div>
+         </div>
+        <div class="container col-md-4 col-sm-6  p-3">
+            <div class="container col-12 shadow border rounded text-center">
+                <h3>End of the decade sale!</h3>
+                <p>
+                    Click to reveal the discount code!
+                </p>
+                <button type="button" class="btn btn-info info clickMe" data-sale="10">Click Me!</button>
+            </div>            
         </div>
 
+        <div class="container col-md-4 col-sm-6  p-3">
+            <div class="container col-12 shadow  border rounded text-center">
+                <h3>Food Sale!</h3>
+                <p>
+                    Save on your human consumption requirements!
+                </p>
+                <button type="button" class="btn btn-info info clickMe" data-sale="6e6f74206120726f626f74">Click Me!</button>
+            </div>
+         </div>
     </div>
 </div>
-<div class="container">
+
+<div class="toast text-center" style="position: absolute; top: 100px; right: 10px;">
+    <div class="toast-header " id="toast">
+        <div class="text-left mr-1">
+            <button type="button" class="btnCloseToast">X</button>
+        </div>
+        <div class="text-center mx-1">
+            <span id="tstTitle"></span>
+        </div>
+    </div>
+    <div class="toast-body text-center">
+        <span id="discountCode"></span>
+    </div>
+</div>
+
+@*<div class="container">
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
@@ -59,14 +81,6 @@
 <div class="col-md-6">
     <img src="~/img/black.png" id="bloon"/>
  
-</div>
-<div class="toast">
-    <div class="toast-header" id="toast">
-        <button type="button" class="btnCloseToast">X</button>
-        Toast
-    </div>
-    <div class="toast-body">
-        Butter
-    </div>
-</div>
+</div>*@
+
 
