@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using Northwind.Models;
 
 namespace Northwind.Controllers
 {
@@ -7,5 +8,13 @@ namespace Northwind.Controllers
     {
         public ActionResult Index() => View();
         public ActionResult Balloon() => View();
+
+
+        private INorthwindRepository repository;
+
+        public HomeController(INorthwindRepository repo) => repository = repo;
+
+
+
     }
 }
