@@ -23,26 +23,27 @@
 
 <div class="container-fluid">
 
-    <div class="list-group">
-        @foreach (Discount d in Model)
+    <div class="row">
+        @foreach (Discount discount in Model)
         {
-            <div class="list-group-item">
-                <div class="container col-md-4 col-sm-6  p-3">
-                    <div class="container col-12 shadow border rounded text-center">
-                        <h3>@d.Title</h3>
-                        <p>
-                            @d.Description
-                            
-                        </p>
-                        <button type="button" class="btn btn-info info clickMe" data-sale="@d.Code">Click Me!</button>
-
-                    </div>
+            <div class="card col-md m-3 p-3">
+                <div class="card-header">
+                    <h3>@Html.DisplayFor(modelItem => discount.Title)</h3>
+                </div>
+                <div class="card-body">                    
+                    <p>
+                        @Html.DisplayFor(modelItem => discount.Description)
+                    </p>
+                    <p>Discount Expires: <span>@Html.DisplayFor(modelItem => discount.EndTime)</span></p>                    
+                </div>
+                <div class="card-footer">
+                    <i class="fas fa-tag"></i><button type="button" class="btn btn-primary showDiscount" data-title="@Html.DisplayFor(modelItem => discount.Title)" data-sale="@Html.DisplayFor(modelItem => discount.Code)">Discount Code</button>
                 </div>
             </div>
         }
     </div>
 
-    <div class="row">
+    @*<div class="row">
         <div class="container col-md-4 col-sm-6  p-3">
             <div class="container col-12 shadow border rounded text-center">
                 <h3>Daily Discount</h3>
@@ -73,7 +74,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 <div class="toast text-center" style="position: absolute; top: 100px; right: 10px;">
     <div class="toast-header " id="toast">

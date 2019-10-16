@@ -1,0 +1,45 @@
+﻿@using Northwind.Models
+@model IEnumerable<Discount>
+
+@{
+    ViewData["Title"] = "Discounts";
+}
+@section Scripts {
+<script src="~/js/client.js"></script>
+}
+
+<h1>Current Discounts</h1>
+
+<div>
+    <h4>Discount</h4>
+    <hr />
+    <div class="list-group">
+        @foreach (Discount discount in Model)
+        {
+            <div class="list-group-item">
+                <h4>@Html.DisplayFor(modelItem => discount.Title)</h4>
+                <p>@Html.DisplayFor(modelItem => discount.Description)</p>
+                <p>Discount Expires: <span>@Html.DisplayFor(modelItem => discount.EndTime)</span></p>                
+                <br/>
+                <i class="fas fa-tag"></i><button type="button" class="btn btn-primary showDiscount" data-title="@Html.DisplayFor(modelItem => discount.Title)" data-sale="@Html.DisplayFor(modelItem => discount.Code)">Discount Code</button>
+            </div>
+        }
+    </div>
+</div>
+<div class="toast text-center" style="position: absolute; top: 100px; right: 10px;">
+    <div class="toast-header " id="toast">
+        <div class="text-left mr-1">
+            <button type="button" class="btnCloseToast">X</button>
+        </div>
+        <div class="text-center mx-1">
+            <span id="tstTitle"></span>
+        </div>
+    </div>
+    <div class="toast-body text-center">
+        <span id="discountCode"></span>
+    </div>
+</div>
+@*<div>
+    <a asp-action="Edit" asp-route-id="@Model.DiscountID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>*@
