@@ -9,18 +9,20 @@ $(document).ready(function () {
     $('.clickMe').on('click', function () {
         
         $('.toast').toast({ autohide: false }).toast('show');
-        if ($(this).data('sale') === 1) {
-            $('#discountCode').html('daily2019');
-            $('#tstTitle').html('Your Daily Discount Code');
-        }
-        else if ($(this).data('sale') === 10) {
-            $('#discountCode').html('dec2019');
-            $('#tstTitle').html('Your Decade Discount Code');
-        }
-        else if ($(this).data('sale') === "6e6f74206120726f626f74") {
-            $('#discountCode').html('gorn2019');
-            $('#tstTitle').html('Your Consumables Discount Code');
-        }
+        $('#discountCode').html($(this).data('sale'));
+        $('#tstTitle').html('Your Daily Discount Code');
+        //if ($(this).data('sale') === 1) {
+        //    $('#discountCode').html('daily2019');
+        //    $('#tstTitle').html('Your Daily Discount Code');
+        //}
+        //else if ($(this).data('sale') === 10) {
+        //    $('#discountCode').html('dec2019');
+        //    $('#tstTitle').html('Your Decade Discount Code');
+        //}
+        //else if ($(this).data('sale') === "6e6f74206120726f626f74") {
+        //    $('#discountCode').html('gorn2019');
+        //    $('#tstTitle').html('Your Consumables Discount Code');
+        //}
         toastAudio.currentTime = 0;
         toastAudio.play();
     });

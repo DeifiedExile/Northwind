@@ -1,0 +1,23 @@
+﻿@using Northwind.Models
+@model  Contact
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@*asp for lets input grab validation from annotations on contact class*@
+<form method="post" asp-action="Index">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" class="form-control" placeholder="Enter Name" required="required"/>
+            <label asp-for="Email">Email</label>
+            <input  asp-for="Email" class="form-control" placeholder="Enter Email" required="required"/>
+        </div>
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Contact</button>
+</form>
+
