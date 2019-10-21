@@ -19,11 +19,18 @@ namespace Northwind.Models
         public IQueryable<Product> Products => context.Products;
         public IQueryable<Discount> Discounts => context.Discounts;
         public IQueryable<Contact> Contacts => context.Contacts;
+        public IQueryable<Customer> Customers => context.Customers;
 
         public void AddContact(Contact contact)
         {
             //creates insert or update statement automatically based on what you're doing
             context.Contacts.Add(contact);
+            context.SaveChanges();
+        }
+
+        public void AddCustomer(Customer customer)
+        {
+            context.Customers.Add(customer);
             context.SaveChanges();
         }
 
