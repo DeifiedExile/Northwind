@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
 
 namespace Northwind.Controllers
@@ -25,7 +21,7 @@ namespace Northwind.Controllers
         [HttpPost]
         public IActionResult Register(Customer customer)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 repository.AddCustomer(customer);
             }

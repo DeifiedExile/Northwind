@@ -8,7 +8,7 @@ namespace Northwind.Models
         // which was registered at application startup
         private NorthwindContext context;
 
-        
+
 
         public EFNorthwindRepository(NorthwindContext ctx)
         {
@@ -34,6 +34,6 @@ namespace Northwind.Models
             context.SaveChanges();
         }
 
-        
+
     }
 }

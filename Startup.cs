@@ -21,7 +21,26 @@ namespace Northwind
         public void ConfigureServices(IServiceCollection services)
         {
 
-           // services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(Configuration["Data:NWIdentity:ConnectionString"]));
+
+            //Identity framework services
+            services.AddDbContext<AppIdentityDBContext>(options =>
+                options.UseSqlServer(Configuration["Data:Northwind:ConnectionString"]));
+
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+                {
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequireLowercase = true;
+                    options.User.RequireUniqueEmail = true;
+                }) //more password options available. Dont change after launch or users will get confused
+                .AddEntityFrameworkStores<AppIdentityDBContext>()
+                .AddDefaultTokenProviders();
+
+
+
+
+
+
+            // services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(Configuration["Data:NWIdentity:ConnectionString"]));
             //services.AddIdentity<AppUser, IdentityRole>(opts =>
             //{
             //    opts.User.RequireUniqueEmail = true;
@@ -34,8 +53,10 @@ namespace Northwind
             //}).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
 
             services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(Configuration["Data:Northwind:ConnectionString"]));
+
             //services.AddTransient<IProductRepository, EFNorthwindRepository>()
             services.AddTransient<INorthwindRepository, EFNorthwindRepository>();
+
 
             services.AddMvc();
         }
@@ -48,8 +69,11 @@ namespace Northwind
                 app.UseDeveloperExceptionPage();
             }
 
+            //set up authentication
             app.UseAuthentication();
+            //use static files
             app.UseStaticFiles();
+            //set up routing
             app.UseMvcWithDefaultRoute();
         }
     }

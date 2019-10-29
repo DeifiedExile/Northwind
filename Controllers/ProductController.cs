@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
+using System;
+using System.Linq;
 
 namespace Northwind.Controllers
 {
@@ -12,14 +12,14 @@ namespace Northwind.Controllers
         public ProductController(INorthwindRepository repo) => repository = repo;
 
         public IActionResult Category() => View(repository.Categories.OrderBy(c => c.CategoryName));
-        
+
 
         public IActionResult Index(int id)
         {
-            
+
             var results = repository.Products;
-            
-            if(id != 0)
+
+            if (id != 0)
             {
                 results = repository.Products.Where(p => p.CategoryId == id && !p.Discontinued);
             }
@@ -29,14 +29,14 @@ namespace Northwind.Controllers
             //   results = repository.Products.Where(p => p.ProductId == id);
 
             //}
-            
-            
+
+
             return View(results);
 
         }
 
-        
-        
+
+
 
         public IActionResult Discounts() => View(repository.Discounts.Where(d => d.StartTime <= DateTime.Now && d.EndTime > DateTime.Now));
 
