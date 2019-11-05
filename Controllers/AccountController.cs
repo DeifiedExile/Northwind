@@ -47,7 +47,7 @@ namespace Northwind.Controllers
             }
             return View(login);
         }
-
+        [Authorize]
         public async Task<RedirectToActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
@@ -23,17 +24,17 @@ namespace Northwind.Controllers
             _passwordValidator = passwordValidator;
             _passwordHasher = passwordHasher;
         }
-
+        //[Authorize(Roles = "Moderators")]
         public IActionResult Index()
         {
             return View(_userManager.Users);
         }
-
+        [Authorize(Roles = "Users")]
         public IActionResult Create()
         {
             return View();
         }
-
+        [Authorize(Roles = "Users")]
         [HttpPost]
         public async Task<IActionResult> Create(CreateModel model)
         {
@@ -63,6 +64,7 @@ namespace Northwind.Controllers
             }
             return View(model);
         }
+        [Authorize(Roles = "Moderators")]
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {

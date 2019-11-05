@@ -29,28 +29,17 @@ namespace Northwind
             services.AddIdentity<AppUser, IdentityRole>(options =>
                 {
                     options.Password.RequiredLength = 6;
-                    options.Password.RequireLowercase = true;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredUniqueChars = 1;
                     options.User.RequireUniqueEmail = true;
+
                 }) //more password options available. Dont change after launch or users will get confused
                 .AddEntityFrameworkStores<AppIdentityDBContext>()
                 .AddDefaultTokenProviders();
 
-
-
-
-
-
-            // services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(Configuration["Data:NWIdentity:ConnectionString"]));
-            //services.AddIdentity<AppUser, IdentityRole>(opts =>
-            //{
-            //    opts.User.RequireUniqueEmail = true;
-            //    opts.Password.RequiredLength = 6;
-            //    opts.Password.RequireNonAlphanumeric = false;
-            //    opts.Password.RequireLowercase = false;
-            //    opts.Password.RequireUppercase = false;
-            //    opts.Password.RequireDigit = false;
-            //    opts.Password.RequiredUniqueChars = 1;
-            //}).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
 
             services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(Configuration["Data:Northwind:ConnectionString"]));
 
