@@ -24,17 +24,17 @@ namespace Northwind.Controllers
             _passwordValidator = passwordValidator;
             _passwordHasher = passwordHasher;
         }
-        //[Authorize(Roles = "Moderators")]
+        [Authorize(Roles = "Administrators")]
         public IActionResult Index()
         {
             return View(_userManager.Users);
         }
-        [Authorize(Roles = "Users")]
+        [Authorize(Roles = "Customers")]
         public IActionResult Create()
         {
             return View();
         }
-        [Authorize(Roles = "Users")]
+        [Authorize(Roles = "Customers")]
         [HttpPost]
         public async Task<IActionResult> Create(CreateModel model)
         {
@@ -64,7 +64,7 @@ namespace Northwind.Controllers
             }
             return View(model);
         }
-        [Authorize(Roles = "Moderators")]
+        [Authorize(Roles = "Administrators")]
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {

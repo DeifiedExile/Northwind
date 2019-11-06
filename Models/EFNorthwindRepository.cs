@@ -6,34 +6,45 @@ namespace Northwind.Models
     {
         // the repository class depends on the NorthwindContext service
         // which was registered at application startup
-        private NorthwindContext context;
+        private NorthwindContext _context;
 
 
 
         public EFNorthwindRepository(NorthwindContext ctx)
         {
-            context = ctx;
+            _context = ctx;
         }
         // create IQueryable for Categories & Products
-        public IQueryable<Category> Categories => context.Categories;
-        public IQueryable<Product> Products => context.Products;
-        public IQueryable<Discount> Discounts => context.Discounts;
-        public IQueryable<Contact> Contacts => context.Contacts;
-        public IQueryable<Customer> Customers => context.Customers;
+        public IQueryable<Category> Categories => _context.Categories;
+        public IQueryable<Product> Products => _context.Products;
+        public IQueryable<Discount> Discounts => _context.Discounts;
+        public IQueryable<Contact> Contacts => _context.Contacts;
+        public IQueryable<Customer> Customers => _context.Customers;
 
         public void AddContact(Contact contact)
         {
             //creates insert or update statement automatically based on what you're doing
-            context.Contacts.Add(contact);
-            context.SaveChanges();
+            _context.Contacts.Add(contact);
+            _context.SaveChanges();
         }
 
         public void AddCustomer(Customer customer)
         {
-            context.Customers.Add(customer);
-            context.SaveChanges();
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
         }
 
-
+        public void EditCustomer(Customer customer)
+        {
+            var customerToUpdate = _context.Customers.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
+            customerToUpdate.Address = customer.Address;
+            customerToUpdate.City = customer.City;
+            customerToUpdate.Region = customer.Region;
+            customerToUpdate.PostalCode = customer.PostalCode;
+            customerToUpdate.Country = customer.Country;
+            customerToUpdate.Phone = customer.Phone;
+            customerToUpdate.Fax = customer.Fax;
+            _context.SaveChanges();
+        }
     }
 }

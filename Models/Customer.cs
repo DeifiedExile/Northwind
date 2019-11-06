@@ -5,7 +5,7 @@ namespace Northwind.Models
 {
     public class Customer
     {
-        [Key]
+        //[Key]
         [DisplayName("Customer ID")]
         public int CustomerId { get; set; }
         [Required]
@@ -20,5 +20,7 @@ namespace Northwind.Models
         [Phone]
         public string Phone { get; set; }
         public string Fax { get; set; }
+        [Required]
+        public string Email { get; set; }
     }
 }
