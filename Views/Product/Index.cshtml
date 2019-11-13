@@ -1,94 +1,161 @@
-﻿@model IEnumerable<Northwind.Models.Product>
+﻿@*@using Northwind.Models
+    @model IEnumerable<Northwind.Models.Category>
 
-@{
-    ViewData["Title"] = "Index";
-}
-<div class="row align-middle">
-    <div class="col-md-9">
-        <h1>Index</h1>
+    @{
+        ViewData["Title"] = "Index";
+    }
+    <div class="row align-middle">
+        <div class="col-md-9">
+            <h1>Index</h1>
+        </div>
+        <div class="col-md-3 text-right my-auto">
+            <a asp-action="Category" class="btn btn-primary"><i class="fas fa-angle-double-left"></i>Back to categories</a>
+        </div>
     </div>
-    <div class="col-md-3 text-right my-auto">
-        <a asp-action="Category" class="btn btn-primary"><i class="fas fa-angle-double-left"></i>Back to categories</a>
-    </div>
-</div>
 
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<div class="container-fluid">
-    <table class="table-striped container-fluid">
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <div class="container-fluid">*@
+@*<table class="table-striped container-fluid">
         <thead class="thead">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductId)
-                </th>
-                <th>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
 
-                    @Html.DisplayNameFor(model => model.ProductName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.QuantityPerUnit)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UnitPrice)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UnitsInStock)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UnitsOnOrder)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReorderLevel)
-                </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.Discontinued)
-                    </th>*@
-                @*<th>
-                    @Html.DisplayNameFor(model => model.CategoryId)
-                </th>*@
-                @*<th></th>*@
-            </tr>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityPerUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitsInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitsOnOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReorderLevel)
+            </th>
+
+        </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.QuantityPerUnit)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UnitPrice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UnitsInStock)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UnitsOnOrder)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ReorderLevel)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.Discontinued)
-                        </td>*@
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.CategoryId)
-                    </td>*@
-                    @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>*@
-                </tr>
-            }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantityPerUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitsInStock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitsOnOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReorderLevel)
+                </td>
+
+            </tr>
+        }
         </tbody>
-    </table>
-</div>
+    </table>*@
+
+@using Northwind.Models
+@model IEnumerable<Category>
+
+<table class="table table-hover table-striped container-fluid">
+    <thead>
+        <tr>
+            <th scope="col">
+                <div class="form-row">
+                    <div class="form-group col-md-8 mb-0">
+                        <select class="form-control form-control-sm" id="CategoryId">
+                            @foreach (Category c in Model)
+                            {
+                                if (c.CategoryId == ViewBag.id)
+                                {
+                                    <option value="@c.CategoryId" selected>@c.CategoryName</option>
+ }
+                                else
+                                {
+                                    <option value="@c.CategoryId">@c.CategoryName</option>
+}
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                        <div class="form-check text-right">
+                            <input class="form-check-input" type="checkbox" id="Discontinued">
+                            <label class="form-check-label" for="Discontinued">Discontinued</label>
+                        </div>
+                    </div>
+                </div>
+            </th>
+            <th scope="col" class="text-right">Price</th>
+            <th scope="col" class="text-right">Stock</th>
+        </tr>
+    </thead>
+    <tbody id="product_rows" data-id="@ViewBag.id">
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        // Turn off ESLint (Windows): Tools - Options - Text Editor - Javascript - Linting
+        $(function () {
+            getProducts()
+
+            function getProducts() {
+                var id = $('#product_rows').data('id');
+                var discontinued = $('#Discontinued').prop('checked') ? "" : "/discontinued/false";
+                $.getJSON({
+                    url: "../../api/category/" + id + "/product" + discontinued,
+                    success: function (response, textStatus, jqXhr) {
+                        //console.log(response);
+                        $('#product_rows').html("");
+                        for (var i = 0; i < response.length; i++) {
+                            var css = response[i].discontinued ? " class=\"discontinued\"" : "";
+                            var row = "<tr" + css + ">"
+                                + "<td>" + response[i].productName + "</td>"
+                                + "<td class=\"text-right\">$" + response[i].unitPrice.toFixed(2) + "</td>"
+                                + "<td class=\"text-right\">" + response[i].unitsInStock + "</td>"
+                                + "</tr>";
+                            $('#product_rows').append(row);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        // log the error to the console
+                        console.log("The following error occured: " + textStatus, errorThrown);
+                    }
+                });
+            }
+
+            $('#CategoryId').on('change', function () {
+                $('#product_rows').data('id', $(this).val());
+                getProducts();
+            });
+
+            $('#Discontinued').on('change', function () {
+                getProducts();
+            });
+        });
+    </script>
+}

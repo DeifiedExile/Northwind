@@ -14,25 +14,30 @@ namespace Northwind.Controllers
         public IActionResult Category() => View(repository.Categories.OrderBy(c => c.CategoryName));
 
 
+        //public IActionResult Index(int id)
+        //{
+
+        //    var results = repository.Products;
+
+        //    if (id != 0)
+        //    {
+        //        results = repository.Products.Where(p => p.CategoryId == id && !p.Discontinued);
+        //    }
+
+        //    //if(id != 0)
+        //    //{
+        //    //   results = repository.Products.Where(p => p.ProductId == id);
+
+        //    //}
+
+
+        //    return View(results);
+
+        //}
         public IActionResult Index(int id)
         {
-
-            var results = repository.Products;
-
-            if (id != 0)
-            {
-                results = repository.Products.Where(p => p.CategoryId == id && !p.Discontinued);
-            }
-
-            //if(id != 0)
-            //{
-            //   results = repository.Products.Where(p => p.ProductId == id);
-
-            //}
-
-
-            return View(results);
-
+            ViewBag.id = id;
+            return View(repository.Categories.OrderBy(c => c.CategoryName));
         }
 
 

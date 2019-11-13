@@ -44,6 +44,7 @@ namespace Northwind.Models
             customerToUpdate.Country = customer.Country;
             customerToUpdate.Phone = customer.Phone;
             customerToUpdate.Fax = customer.Fax;
+            customerToUpdate.Email = customer.Email;
             _context.SaveChanges();
         }
     }
