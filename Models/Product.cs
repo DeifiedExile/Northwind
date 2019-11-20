@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Northwind.Models
 {
@@ -24,5 +25,8 @@ namespace Northwind.Models
         public int CategoryId { get; set; }
         [DisplayName("Category")]
         public Category Category { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public int? SupplierId { get; set; }
+        public Supplier Supplier { get; set; }
     }
 }
