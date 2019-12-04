@@ -20,6 +20,15 @@ namespace Northwind.Models
         public IQueryable<Discount> Discounts => _context.Discounts;
         public IQueryable<Contact> Contacts => _context.Contacts;
         public IQueryable<Customer> Customers => _context.Customers;
+        public IQueryable<Order> Orders => _context.Orders;
+        public IQueryable<OrderDetail> OrderDetails => _context.OrderDetails;
+        public IQueryable<Shipper> Shippers => _context.Shippers;
+        public IQueryable<Supplier> Suppliers => _context.Suppliers;
+        public IQueryable<Employee> Employees => _context.Employees;
+        public IQueryable<EmployeeTerritory> EmployeeTerritories => _context.EmployeeTerritories;
+        public IQueryable<Territory> Territories => _context.Territories;
+        public IQueryable<Region> Regions => _context.Regions;
+
 
         public void AddContact(Contact contact)
         {

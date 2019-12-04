@@ -6,7 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191120012214_addremainingtables.cs" />
+    <Compile Remove="Migrations\20191120012214_addremainingtables.Designer.cs" />
+    <Compile Remove="Migrations\20191120012314_populatedata.cs" />
+    <Compile Remove="Migrations\20191120012314_populatedata.Designer.cs" />
+    <Compile Remove="Migrations\20191120013510_addremainingtables.cs" />
+    <Compile Remove="Migrations\20191120013510_addremainingtables.Designer.cs" />
+    <Compile Remove="Migrations\20191120014637_addremainingtables.cs" />
+    <Compile Remove="Migrations\20191120014637_addremainingtables.Designer.cs" />
+    <Compile Remove="Migrations\20191120021751_populatedata.cs" />
+    <Compile Remove="Migrations\20191120021751_populatedata.Designer.cs" />
+    <Compile Remove="Migrations\20191120022417_alteremployee2.cs" />
+    <Compile Remove="Migrations\20191120022417_alteremployee2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Migrations\sql\Fix_Products.sql" />
+    <None Remove="Migrations\sql\Northwind_Populate.sql" />
     <None Remove="Migrations\sql\Northwind_Populate_Categories.sql" />
     <None Remove="Migrations\sql\Northwind_Populate_Products.sql" />
     <None Remove="Migrations\sql\Populate_Discounts.sql" />
@@ -19,6 +35,9 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Migrations\sql\Fix_Products.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\sql\Northwind_Populate.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\sql\Northwind_Populate_Categories.sql">
