@@ -47,5 +47,31 @@ namespace Northwind.Models
             customerToUpdate.Email = customer.Email;
             _context.SaveChanges();
         }
+
+        public CartItem AddToCart(CartItemJSON cartItemJSON)
+        {
+            int CustomerId = _context.Customers.FirstOrDefault(c => c.Email == cartItemJSON.email).CustomerId;
+            int ProductId = cartItemJSON.id;
+
+            CartItem cartItem = _context.CartItems.FirstOrDefault(ci => ci.ProductId == ProductId && ci.CustomerId == CustomerId);
+            if (cartItem == null)
+            {
+                cartItem = new CartItem()
+                {
+                    CustomerId = CustomerId,
+                    ProductId = cartItemJSON.id,
+                    Quantity = cartItemJSON.qty
+                };
+                _context.Add(cartItem);
+            }
+            else
+            {
+                cartItem.Quantity += cartItemJSON.qty;
+            }
+
+            _context.SaveChanges();
+            cartItem.Product = _context.Products.Find(cartItem.ProductId);
+            return cartItem;
+        }
     }
 }

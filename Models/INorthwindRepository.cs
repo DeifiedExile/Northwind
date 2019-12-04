@@ -12,5 +12,6 @@ namespace Northwind.Models
         void AddContact(Contact contact);
         void AddCustomer(Customer customer);
         void EditCustomer(Customer customer);
+        CartItem AddToCart(CartItemJSON cartItemJSON);
     }
 }

@@ -37,5 +37,7 @@ namespace Northwind.Controllers
         // returns all products in a specific category where discontinued = true/false
         public IEnumerable<Product> GetByCategoryDiscontinued(int CategoryId, bool discontinued) => _repository.Products.Where(p => p.CategoryId == CategoryId && p.Discontinued == discontinued).OrderBy(p => p.ProductName);
 
+        [HttpPost, Route("api/addtocart")]
+        public CartItem Post([FromBody] CartItemJSON cartItem) => _repository.AddToCart(cartItem);
     }
 }

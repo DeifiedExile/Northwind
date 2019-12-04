@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
-
+@using Northwind.Models
+@**@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -15,7 +16,7 @@
     @*<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">*@
     @*<link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">*@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    
+
     <!-- client -->
     <link rel="stylesheet" href="/css/client.css" />
     <link rel="stylesheet" href="~/css/jQueryUI.css" />
@@ -23,7 +24,7 @@
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand"  asp-action="Index" asp-controller="Home"><i class="far fa-compass"></i> NorthWind</a>
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home"><i class="far fa-compass"></i> NorthWind</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,7 +48,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" asp-action="Account" asp-controller="Customer"><i class="fas fa-user"></i> Account</a>
                         <a class="dropdown-item" asp-action="Register" asp-controller="Customer"><i class="fas fa-user-edit"></i> Register</a>
-                        <a class="dropdown-item"  asp-action="Login" asp-controller="Account"><i class="fas fa-key"></i> Sign In</a>
+                        <a class="dropdown-item" asp-action="Login" asp-controller="Account"><i class="fas fa-key"></i> Sign In</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -61,43 +62,56 @@
 
                     </div>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" asp-action="Balloon" asp-controller="Home" role="button">
-                        <i class="fas fa-birthday-cake"></i>Balloon
+                @*<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navAdminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-cart-arrow-down"></i> Cart
                     </a>
-                </li>
-                <li class="nav-item">
-                    @* login/logout *@
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a class="dropdown-item" asp-action="Logout" asp-controller="Account"><i class="fas fa-sign-out-alt"></i>Sign Out</a>
-                    }
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                </li>
-            </ul>
-            
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 sr-only-focusable" type="search" placeholder="Product Search" aria-label="Search">
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-            </form>
+                        @foreach (CartItem item in Model)
+                        {
+                            <div class="dropdown-item">@item.CartItemId  @item.Quantity</div>
+                        }
+
+                        </div>
+                    </li>*@
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Balloon" asp-controller="Home" role="button">
+                            <i class="fas fa-birthday-cake"></i>Balloon
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        @* login/logout *@
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="dropdown-item" asp-action="Logout" asp-controller="Account"><i class="fas fa-sign-out-alt"></i>Sign Out</a>
+                        }
+
+                    </li>
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2 sr-only-focusable" type="search" placeholder="Product Search" aria-label="Search">
+                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </nav>
+        <div class="container">
+            @RenderBody()
         </div>
-    </nav>
-    <div class="container">
-        @RenderBody()
-    </div>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
-    <!-- popper & bootstrap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-    <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
-            integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
-            crossorigin="anonymous"></script>
-    <!--chartjs-->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.2/dist/Chart.min.js"></script>
-    @RenderSection("Scripts", required: false)
-</body>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                crossorigin="anonymous"></script>
+        <!-- popper & bootstrap -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+                integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+                crossorigin="anonymous"></script>
+        <!--chartjs-->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.2/dist/Chart.min.js"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
 </html>
