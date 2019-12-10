@@ -27,7 +27,7 @@ namespace Northwind.Controllers
 
         public IActionResult SalesData()
         {
-            return View();
+            return View(repository.Categories.OrderBy(c => c.CategoryName));
         }
 
     }

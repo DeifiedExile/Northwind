@@ -18,6 +18,8 @@
     <Compile Remove="Migrations\20191120021751_populatedata.Designer.cs" />
     <Compile Remove="Migrations\20191120022417_alteremployee2.cs" />
     <Compile Remove="Migrations\20191120022417_alteremployee2.Designer.cs" />
+    <Compile Remove="Migrations\20191204030751_details.cs" />
+    <Compile Remove="Migrations\20191204030751_details.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

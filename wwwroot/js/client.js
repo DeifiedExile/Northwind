@@ -26,7 +26,17 @@ $(document).ready(function () {
         }
     });
 
-    
+
+    //var ctx = $('#myChart').getContext('2d');
+    //var myChart = new myChart(ctx,
+    //    {
+    //        type: 'bar',
+    //        dara: {
+    //            labels: []
+    //        }
+    //    })
+
 
 });
+
 
