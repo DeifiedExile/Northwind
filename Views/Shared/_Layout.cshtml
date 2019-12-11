@@ -24,7 +24,7 @@
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" asp-action="Index" asp-controller="Home"><i class="far fa-compass"></i> NorthWind</a>
+        <a class="navbar-brand"  asp-action="Index" asp-controller="Home"><i class="far fa-compass"></i> NorthWind</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,6 +36,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" asp-action="Category" asp-controller="Product"><i class="fas fa-list-ul"></i> Browse Categories</a>
+                        <a class="dropdown-item" asp-action="SalesData" asp-controller="Product"><i class="fas fa-chart-bar"></i> Sales Data</a>
                         <a class="dropdown-item" href="#"><i class="fas fa-search"></i> Product Search</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" asp-action="Index" asp-controller="Discount"><i class="fas fa-tag"></i> Current Discounts</a>
@@ -57,14 +58,14 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                        <a class="dropdown-item" asp-action="Index" asp-controller="Admin"><i class="fas fa-user-edit"></i>Manage Users</a>
-                        <a class="dropdown-item" asp-action="index" asp-controller="RoleAdmin"><i class="fas fa-key">Roles</i></a>
+                        <a class="dropdown-item" asp-action="Index" asp-controller="Admin"><i class="fas fa-user-edit"></i> Manage Users</a>
+                        <a class="dropdown-item" asp-action="index" asp-controller="RoleAdmin"><i class="fas fa-key"></i> Roles</a>
 
                     </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" asp-action="Balloon" asp-controller="Home" role="button">
-                        <i class="fas fa-birthday-cake"></i>Balloon
+                        <i class="fas fa-birthday-cake"></i> Balloon
                     </a>
                 </li>
                 <li class="nav-item">

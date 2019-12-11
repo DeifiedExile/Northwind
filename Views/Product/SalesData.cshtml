@@ -1,0 +1,107 @@
+﻿@using Northwind.Models
+@model IEnumerable<Category>
+
+
+
+<h2 class="mt-3"><i class="fas fa-chart-bar"></i> Sales by Product Categories</h2>
+<select id="selectCategory" style="margin-top:5px;">
+    @foreach (Category c in Model)
+    {
+        <option value="@c.CategoryId">@c.CategoryName</option>
+    }
+</select>
+
+<div class="row" style="padding:15px;">
+    <div class="col-lg-12">
+        <div id="chartDiv">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts
+{
+
+    <script>
+
+        var myChart;
+        
+        function getProductData(categoryId) {
+
+            var labels = [];
+            var data = [];
+            
+            console.log(categoryId);
+
+
+            $.get({
+                url: "../../api/category/" + categoryId + "/product/sales",
+                success: function (response, textStatus, jqXhr) {
+                    console.log(response);
+
+                    labels = response.map(function (e) {
+                        return e.productName;
+                    });
+                    data = response.map(function (e) {
+                        return e.totalRev;
+                    });
+
+                    console.log(labels);
+                    console.log(data);
+
+
+                    var config = {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'Overall Sales',
+                                    data: data,
+                                    backgroundColor: 'rgba(0, 119, 204, 0.3)'
+
+                                }
+                            ]
+                        }
+
+                    };
+
+                    if (myChart) {
+                        myChart.destroy();
+                    }
+
+                    var ctx = document.getElementById('myChart').getContext('2d');
+
+                    myChart = new Chart(ctx, config);
+
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    // log the error to the console
+                    console.log("The following error occured: " + textStatus, errorThrown);
+                }
+            });
+
+        }
+        
+
+        $('#selectCategory').on('change', function () {
+                var categoryId = $('#selectCategory :selected').val();
+                getProductData(categoryId);
+
+        });
+        $(document).ready(function() {
+            var categoryId = $('#selectCategory :selected').val();
+            getProductData(categoryId);
+        });
+        
+
+    </script>
+
+
+}
+
+
