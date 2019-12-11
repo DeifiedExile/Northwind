@@ -3,7 +3,7 @@
 
 
 <h2 class="mt-3"><i class="fas fa-list-ul"></i> Product Categories</h2>
-<div id="User" style="display:none;" data-email="@User.Identity.Name" data-customer="@User.IsInRole("Customer")></div>
+<div id="User" style="display:none;" data-email="@User.Identity.Name"></div>
 <div class="list-group">
     @foreach (CartItem c in Model)
     {
@@ -23,7 +23,6 @@
                 </div>
             }
         }
-        <div style="display:none;" id="CustId">@c.CustomerId</div>
         <a><i class="fas fa-times"></i></a>
     </div>
     }

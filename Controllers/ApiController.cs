@@ -97,28 +97,14 @@ namespace Northwind.Controllers
         public IEnumerable<OrderDetail> GetDetails(int ProductId) =>
             _repository.OrderDetails.Where(od => od.ProductId == ProductId);
 
+        [HttpPost, Route("api/addtocart")]
+        public CartItem Post([FromBody] CartItemJSON cartItem) => _repository.AddToCart(cartItem);
 
-        //[HttpGet, Route("api/category/{CategoryId}/sales")]
-        //public IEnumerable<Product> GetSalesByCategory(int CategoryId) => _repository.Products
-        //    .Where(p => p.CategoryId == CategoryId)
-        //    .Include(p => p.OrderDetails);
-        //public IQueryable<> GetSalesByCategory(int CategoryId)
-        //{
-        //    var q = from o in _repository.Orders
-        //        from p in _repository.Products
-        //        join d in _repository.OrderDetails
-        //            on new {o.OrderId, p.ProductId} equals new
-        //            {
-        //                d.OrderId,
-        //                d.ProductId
-        //            } into details
-        //        from d in details
-        //        select new {o.OrderId, p.ProductId, d.UnitPrice};
-        //    return q;
-        //}
+        [HttpPost, Route("api/ordercart")]
+        public int Post([FromBody] int customerId) => _repository.OrderCart(customerId);
 
-        //public IEnumerable<OrderDetail> GetSalesByCategory(int CategoryId)
-        //{
+
+        
 
     }
 }
