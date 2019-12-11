@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Northwind.Models;
 
 namespace Northwind.Migrations
 {
     [DbContext(typeof(NorthwindContext))]
-    partial class NorthwindContextModelSnapshot : ModelSnapshot
+    [Migration("20191204010108_add-cartitems")]
+    partial class addcartitems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,19 +31,13 @@ namespace Northwind.Migrations
 
                     b.Property<int>("CustomerId");
 
-                    b.Property<int?>("DiscountID");
-
                     b.Property<int>("ProductId");
 
                     b.Property<int>("Quantity");
 
-                    b.Property<decimal>("UnitPrice");
-
                     b.HasKey("CartItemId");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("DiscountID");
 
                     b.HasIndex("ProductId");
 
@@ -383,10 +379,6 @@ namespace Northwind.Migrations
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Northwind.Models.Discount", "Discount")
-                        .WithMany()
-                        .HasForeignKey("DiscountID");
 
                     b.HasOne("Northwind.Models.Product", "Product")
                         .WithMany()

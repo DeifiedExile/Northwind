@@ -62,34 +62,31 @@
 
                     </div>
                 </li>
-                @*<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navAdminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-cart-arrow-down"></i> Cart
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Balloon" asp-controller="Home" role="button">
+                        <i class="fas fa-birthday-cake"></i>Balloon
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                        @foreach (CartItem item in Model)
-                        {
-                            <div class="dropdown-item">@item.CartItemId  @item.Quantity</div>
-                        }
-
-                        </div>
-                    </li>*@
-
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Balloon" asp-controller="Home" role="button">
-                            <i class="fas fa-birthday-cake"></i>Balloon
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        @* login/logout *@
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a class="dropdown-item" asp-action="Logout" asp-controller="Account"><i class="fas fa-sign-out-alt"></i>Sign Out</a>
-                        }
-
-                    </li>
-                </ul>
+                </li>
+                <li class="nav-item">
+                    @* login/logout *@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="Logout" asp-controller="Account"><i class="fas fa-sign-out-alt"></i>Sign Out</a>
+                    }
+                </li>
+                <li class="nav-item">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="Index" asp-controller="Cart"><i class="fas fa-shopping-cart"></i>My Cart</a>
+                    }
+                </li>
+                <li class="nav-item">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="Index" asp-controller="Order"><i class="fas fa-shopping-cart"></i>My Order History</a>
+                    }
+                </li>
+            </ul>
 
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2 sr-only-focusable" type="search" placeholder="Product Search" aria-label="Search">

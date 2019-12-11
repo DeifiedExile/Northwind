@@ -39,5 +39,8 @@ namespace Northwind.Controllers
 
         [HttpPost, Route("api/addtocart")]
         public CartItem Post([FromBody] CartItemJSON cartItem) => _repository.AddToCart(cartItem);
+
+        [HttpPost, Route("api/ordercart")]
+        public int Post([FromBody] int customerId) => _repository.OrderCart(customerId);
     }
 }

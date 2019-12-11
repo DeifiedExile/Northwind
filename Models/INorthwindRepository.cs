@@ -17,10 +17,12 @@ namespace Northwind.Models
         IQueryable<EmployeeTerritory> EmployeeTerritories { get; }
         IQueryable<Territory> Territories { get; }
         IQueryable<Region> Regions { get; }
+        IQueryable<CartItem> CartItems { get; }
 
         void AddContact(Contact contact);
         void AddCustomer(Customer customer);
         void EditCustomer(Customer customer);
         CartItem AddToCart(CartItemJSON cartItemJSON);
+        int OrderCart(int customerId);
     }
 }

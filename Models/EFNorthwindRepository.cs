@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Northwind.Models
 {
@@ -28,6 +30,7 @@ namespace Northwind.Models
         public IQueryable<EmployeeTerritory> EmployeeTerritories => _context.EmployeeTerritories;
         public IQueryable<Territory> Territories => _context.Territories;
         public IQueryable<Region> Regions => _context.Regions;
+        public IQueryable<CartItem> CartItems => _context.CartItems;
 
 
         public void AddContact(Contact contact)
@@ -65,8 +68,14 @@ namespace Northwind.Models
             CartItem cartItem = _context.CartItems.FirstOrDefault(ci => ci.ProductId == ProductId && ci.CustomerId == CustomerId);
             if (cartItem == null)
             {
+                var product = _context.Products.FirstOrDefault(p => p.ProductId == cartItemJSON.id);
+                var discount = _context.Discounts.FirstOrDefault(d => d.ProductID == cartItemJSON.id);
+
                 cartItem = new CartItem()
                 {
+                    UnitPrice = product.UnitPrice,
+                    Discount = discount,
+                    CartItemName = product.ProductName,
                     CustomerId = CustomerId,
                     ProductId = cartItemJSON.id,
                     Quantity = cartItemJSON.qty
@@ -81,6 +90,38 @@ namespace Northwind.Models
             _context.SaveChanges();
             cartItem.Product = _context.Products.Find(cartItem.ProductId);
             return cartItem;
+        }
+
+        public int OrderCart(int customerId)
+        {
+            var orderDetails = _context.CartItems.Where(c => c.CustomerId == customerId);
+            List<OrderDetail> OrderDetails = new List<OrderDetail>();
+
+            foreach (CartItem c in orderDetails)
+            {
+                OrderDetail orderDetail = new OrderDetail()
+                {
+                    ProductId = c.ProductId,
+                    UnitPrice = Decimal.ToDouble(c.UnitPrice),
+                    Quantity = c.Quantity,
+                    Discount = c.Discount.DiscountPercent
+                };
+                OrderDetails.Add(orderDetail);
+            }
+
+            var order = new Order()
+            {
+                CustomerId = customerId,
+                EmployeeId = 1,
+                ShipVia = 1,
+                Freight = 1,
+                OrderDetails = OrderDetails
+            };
+
+            _context.Add(order);
+            _context.SaveChanges();
+
+            return customerId;
         }
     }
 }

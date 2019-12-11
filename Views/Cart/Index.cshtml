@@ -1,0 +1,56 @@
+﻿@using Northwind.Models
+@model IEnumerable<CartItem>
+
+
+<h2 class="mt-3"><i class="fas fa-list-ul"></i> Product Categories</h2>
+<div id="User" style="display:none;" data-email="@User.Identity.Name" data-customer="@User.IsInRole("Customer")></div>
+<div class="list-group">
+    @foreach (CartItem c in Model)
+    {
+    <div class="list-group-item list-group-item-action">
+        <div>
+            @c.CartItemName
+        </div>
+        <div>
+            @c.Quantity
+        </div>
+        @if (c.Discount != null)
+        {
+            @if (c.Discount.StartTime <= DateTime.Now && c.Discount.EndTime > DateTime.Now)
+            {
+                <div>
+                    @c.UnitPrice
+                </div>
+            }
+        }
+        <div style="display:none;" id="CustId">@c.CustomerId</div>
+        <a><i class="fas fa-times"></i></a>
+    </div>
+    }
+    <button id="ordercart">Check Out</button>
+</div>
+
+<script>
+    $(function () {
+        $('#ordercart').on('click', function(){
+
+                $.ajax({
+                    headers: { "Content-Type": "application/json" },
+                    url: "../../api/ordercart",
+                    type: 'post',
+                    data: $('#CustId').html(),
+                    success: function (response, textStatus, jqXhr) {
+
+                        toast("Product Added", response.product.productName + " successfully added to cart.");
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+
+                        toast("Error", "Please try again later.");
+                        console.log("The following error occured: " + jqXHR.status, errorThrown);
+                    }
+                });
+            });
+    }
+
+    
+</script>
